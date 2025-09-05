@@ -33,7 +33,9 @@ export function DashboardSidebar() {
   const collapsed = state === "collapsed";
 
   return (
-    <Sidebar className="border-r border-border bg-surface-elevated">
+    <Sidebar className="border-r border-sidebar-border bg-sidebar/80 backdrop-blur-lg">
+      <div className="absolute inset-0 bg-gradient-to-b from-sidebar-glass to-sidebar/60 backdrop-blur-sm" />
+      <div className="relative z-10">
       <SidebarHeader className="p-6 border-b border-border">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-gradient-primary flex items-center justify-center">
@@ -90,6 +92,7 @@ export function DashboardSidebar() {
           </div>
         )}
       </SidebarContent>
+      </div>
     </Sidebar>
   );
 }

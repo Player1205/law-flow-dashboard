@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "./DashboardSidebar";
 import { TopNavigation } from "./TopNavigation";
+import { TrendingTopicsBar } from "./TrendingTopicsBar";
 import { ChatInterface } from "../chat/ChatInterface";
 import { DocumentPanel } from "../documents/DocumentPanel";
 
@@ -17,6 +18,9 @@ export function DashboardLayout() {
           
           {/* Main Content Area */}
           <div className="flex-1 flex flex-col">
+            {/* Trending Topics Bar */}
+            <TrendingTopicsBar />
+            
             {/* Top Navigation */}
             <TopNavigation onTogglePanel={() => setIsPanelOpen(!isPanelOpen)} />
             

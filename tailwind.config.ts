@@ -71,13 +71,14 @@ export default {
 				},
 				
 				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
+					DEFAULT: 'hsla(var(--sidebar-background))',
+					glass: 'hsla(var(--sidebar-glass))',
 					foreground: 'hsl(var(--sidebar-foreground))',
 					primary: 'hsl(var(--sidebar-primary))',
 					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
+					accent: 'hsla(var(--sidebar-accent))',
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
+					border: 'hsla(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
