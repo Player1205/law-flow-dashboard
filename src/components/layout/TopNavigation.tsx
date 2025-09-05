@@ -2,6 +2,7 @@ import { Bell, Search, ChevronDown, PanelRightOpen, PanelRightClose } from "luci
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 interface TopNavigationProps {
   onTogglePanel: () => void;
@@ -31,6 +32,8 @@ export function TopNavigation({ onTogglePanel }: TopNavigationProps) {
       </div>
 
       <div className="flex items-center gap-3">
+        <ThemeToggle />
+        
         <Button
           variant="ghost"
           size="sm"
