@@ -2,41 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Legal AI Chatbot - Premium Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
+    /* Core Brand Colors - Professional Legal Tech */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --foreground: 222 84% 4.9%;
+    
+    /* Legal Professional Navy */
+    --primary: 223 47% 11%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 223 47% 15%;
+    --primary-glow: 223 47% 25%;
+    
+    /* Premium Accent Blues */
+    --accent-blue: 217 91% 60%;
+    --accent-blue-light: 217 91% 70%;
+    --accent-blue-glow: 217 91% 85%;
+    
+    /* Sophisticated Grays */
+    --surface: 0 0% 98%;
+    --surface-elevated: 0 0% 100%;
+    --surface-muted: 220 13% 97%;
+    --surface-hover: 220 13% 95%;
+    
+    /* Text Hierarchy */
+    --text-primary: 222 84% 4.9%;
+    --text-secondary: 215 16% 47%;
+    --text-tertiary: 215 16% 65%;
+    --text-on-primary: 0 0% 100%;
+    
+    /* Interactive Elements */
+    --border: 220 13% 91%;
+    --border-strong: 220 13% 85%;
+    --input: 220 13% 97%;
+    --input-focus: 217 91% 60%;
+    --ring: 217 91% 60%;
+    
+    /* Status Colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 222 84% 4.9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Shadows & Effects */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-card: 0 4px 12px -2px rgb(0 0 0 / 0.08);
+    --shadow-dialog: 0 20px 40px -8px rgb(0 0 0 / 0.12);
+    --shadow-premium: 0 8px 32px -4px hsl(223 47% 11% / 0.12);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(223 47% 11%), hsl(223 47% 15%));
+    --gradient-surface: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 13% 98%));
+    --gradient-accent: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 70%));
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +128,100 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter antialiased;
+  }
+}
+
+@layer components {
+  /* Chat Message Animation */
+  .message-slide-in {
+    animation: slideInMessage 0.3s ease-out forwards;
+  }
+  
+  .message-typing {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  
+  /* Premium Card Component */
+  .card-premium {
+    @apply bg-surface-elevated border border-border rounded-xl shadow-card transition-all duration-300;
+  }
+  
+  .card-premium:hover {
+    @apply shadow-premium border-border-strong;
+  }
+  
+  /* Sidebar Active State */
+  .nav-active {
+    @apply bg-gradient-to-r from-accent-blue/10 to-accent-blue/5 border-r-2 border-accent-blue text-accent-blue font-medium;
+  }
+  
+  /* Smooth Button Interactions */
+  .btn-premium {
+    @apply relative overflow-hidden transition-all duration-300 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full before:transition-transform before:duration-700 hover:before:translate-x-full;
+  }
+  
+  /* Input Focus Ring */
+  .input-premium {
+    @apply border-border bg-input transition-all duration-200 focus:border-input-focus focus:ring-2 focus:ring-input-focus/20;
+  }
+  
+  /* Glassmorphism Effect */
+  .glass-effect {
+    @apply backdrop-blur-lg bg-white/80 border border-white/20;
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes slideInMessage {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Animation Classes */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+  
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-premium;
   }
 }
