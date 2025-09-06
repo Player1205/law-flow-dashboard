@@ -13,23 +13,11 @@ interface Message {
   isTyping?: boolean;
 }
 
-const mockMessages: Message[] = [
-  {
-    id: '1',
-    content: "Hello! I need help understanding the implications of a non-disclosure agreement in a merger scenario.",
-    sender: 'user',
-    timestamp: new Date(Date.now() - 300000),
-  },
-  {
-    id: '2',
-    content: "I'd be happy to help you understand NDA implications in mergers. Non-disclosure agreements in merger scenarios typically serve several key purposes:\n\n1. **Due Diligence Protection**: NDAs ensure that confidential financial, operational, and strategic information shared during due diligence remains protected.\n\n2. **Competitive Advantage**: They prevent the acquiring company from using disclosed information if the deal falls through.\n\n3. **Regulatory Compliance**: Many jurisdictions require specific confidentiality measures during M&A transactions.\n\nWould you like me to analyze any specific clauses or scenarios?",
-    sender: 'ai',
-    timestamp: new Date(Date.now() - 240000),
-  },
-];
+// Replace with your Replit backend URL
+const BACKEND_URL = "https://your-repl-name.username.repl.co/chat";
 
 export function ChatInterface() {
-  const [messages, setMessages] = useState<Message[]>(mockMessages);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -56,17 +44,38 @@ export function ChatInterface() {
     setInputValue("");
     setIsTyping(true);
 
-    // Simulate AI response
-    setTimeout(() => {
+    try {
+      const response = await fetch(BACKEND_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: newMessage.content })
+      });
+
+      const data = await response.json();
+
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
-        content: "I understand your question. Let me analyze this legal matter for you. Based on current legal precedents and regulations, here are the key considerations you should be aware of...",
+        content: data.reply || "Sorry, I could not get an answer.",
         sender: 'ai',
         timestamp: new Date(),
       };
+
       setMessages(prev => [...prev, aiResponse]);
+
+    } catch (error) {
+      console.error("Error connecting to backend:", error);
+
+      const aiResponse: Message = {
+        id: (Date.now() + 1).toString(),
+        content: "Sorry, I cannot connect to the backend right now.",
+        sender: 'ai',
+        timestamp: new Date(),
+      };
+
+      setMessages(prev => [...prev, aiResponse]);
+    } finally {
       setIsTyping(false);
-    }, 2000);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
